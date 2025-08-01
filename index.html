@@ -7,7 +7,7 @@
     <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.min.js"></script>
     <style>
       body { margin: 0; overflow: hidden; font-family: sans-serif; }
-      #marker-lost-msg {
+/*       #marker-lost-msg {
         position: absolute;
         top: 50%;
         left: 50%;
@@ -19,7 +19,7 @@
         display: none;
         z-index: 999;
         box-shadow: 0 0 10px rgba(0,0,0,0.3);
-      }
+      } */
     </style>
   </head>
   <body>
@@ -34,7 +34,7 @@
       <a-entity camera></a-entity>
     </a-scene>
 
-    <script>
+<!--     <script>
       const marker = document.querySelector('#mainstation-marker');
       const message = document.getElementById('marker-lost-msg');
 
@@ -45,6 +45,6 @@
       marker.addEventListener('markerLost', () => {
         message.style.display = 'block';
       });
-    </script>
+    </script> -->
   </body>
 </html>
