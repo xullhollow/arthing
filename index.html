@@ -6,22 +6,45 @@
     <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.min.js"></script>
     <style>
-      body { margin: 0; overflow: hidden; }
-      a-scene { width: 100vw; height: 100vh; }
+      body { margin: 0; overflow: hidden; font-family: sans-serif; }
+      #marker-lost-msg {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgba(255, 255, 255, 0.95);
+        padding: 20px 30px;
+        border-radius: 12px;
+        font-size: 18px;
+        display: none;
+        z-index: 999;
+        box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      }
     </style>
   </head>
   <body>
-    <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
-      <!-- Default HIRO marker -->
-      <!--a-marker preset="hiro">
-        <a-box position="0 0.5 0" material="color: #F44336;"></a-box>
-      </a-marker-->
+    <!-- Marker Not Found Message -->
+    <div id="marker-lost-msg">☕ No marker detected. Please point your camera at the loyalty card.</div>
 
-        <a-marker type="pattern" url="MSC-Patt3.patt">
-          <a-box position="0 0.5 0" material="color: #000011;"></a-box>
-        </a-marker>
-
+    <a-scene embedded arjs>
+      <!-- Custom marker -->
+      <a-marker type="pattern" url="mainstation-marker.patt" id="mainstation-marker">
+        <a-box position="0 0.5 0" material="color: #ff5722;"></a-box>
+      </a-marker>
       <a-entity camera></a-entity>
     </a-scene>
+
+    <script>
+      const marker = document.querySelector('#mainstation-marker');
+      const message = document.getElementById('marker-lost-msg');
+
+      marker.addEventListener('markerFound', () => {
+        message.style.display = 'none';
+      });
+
+      marker.addEventListener('markerLost', () => {
+        message.style.display = 'block';
+      });
+    </script>
   </body>
 </html>
